@@ -52,8 +52,14 @@ export default {
     },
     deleteTask(id) {
       this.tasks = this.tasks.filter((task) => task.id !== id);
+      this.$vs.notify({
+        title: "Task Deleted!",
+        icon: "check_box",
+        position: "top-rigth",
+      });
     },
   },
+  emits: ["delete-task"],
 };
 </script>
 
@@ -66,7 +72,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.container{
+.container {
   max-width: 700px;
   margin: 0 auto;
 }
