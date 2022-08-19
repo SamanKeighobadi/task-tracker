@@ -4,6 +4,7 @@
       <vs-input
         label="Text"
         type="text"
+        size="large"
         name="text"
         v-model="text"
         placeholder="add new task"
@@ -12,6 +13,7 @@
     <div>
       <vs-input
         label="Day & Time"
+        size="large"
         type="text"
         name="day"
         v-model="day"
@@ -44,7 +46,12 @@ export default {
       e.preventDefault();
 
       if (!this.text) {
-        alert("Please add a text ");
+        this.$vs.notify({
+          title:"Task Title is Required",
+          position:"top-center",
+          color:"danger",
+          icon:"error"
+        })
         return;
       }
 
@@ -56,8 +63,12 @@ export default {
       };
 
       this.$emit("add-task", newTask);
-      this.$vs.notification({
-        title:"Task created"
+      this.$vs.notify({
+        title:"Success",
+        text:"Task created",
+        color:"success",
+        position:"top-right",
+        icon:"check_box"
       })
 
       this.text = " ";
