@@ -1,8 +1,8 @@
 <template>
   <form @submit="onSubmit">
-    <div>
-      <label for="text">Text</label>
-      <input
+    <div class="center content-inputs">
+      <vs-input
+        label="Text"
         type="text"
         name="text"
         v-model="text"
@@ -10,8 +10,8 @@
       />
     </div>
     <div>
-      <label for="day">Day & Time</label>
-      <input
+      <vs-input
+        label="Day & Time"
         type="text"
         name="day"
         v-model="day"
@@ -19,11 +19,13 @@
       />
     </div>
     <div>
-      <label for="Text">reminder</label>
-      <input type="checkbox" v-model="reminder" name="reminder" />
+      <vs-checkbox v-model="reminder"> Reminder </vs-checkbox>
     </div>
 
-    <input type="submit" value="Save Task" />
+    <vs-input type="submit" value="Save Task" />
+    <!-- <vs-button >
+        Save Task
+    </vs-button> -->
   </form>
 </template>
 
@@ -53,7 +55,10 @@ export default {
         reminder: this.reminder,
       };
 
-      this.$emit("add-task",newTask)
+      this.$emit("add-task", newTask);
+      this.$vs.notification({
+        title:"Task created"
+      })
 
       this.text = " ";
       this.day = " ";
